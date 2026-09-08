@@ -38,7 +38,7 @@ class DataTransformation:
                 steps=[
                     # we use imputer to replace missing value with NaN or NULL
                     ('imputer',SimpleImputer(strategy='median')), # here we are replacing it with the median
-                    ('scaler',StandardScaler)
+                    ('scaler',StandardScaler(with_mean=False))
                 ]
             )
 
@@ -49,7 +49,7 @@ class DataTransformation:
                 steps=[
                     ('imputer',SimpleImputer(strategy='most_frequent')),
                     ('one_hot_encoder',OneHotEncoder()),
-                    ('scaler',StandardScaler())
+                    ('scaler',StandardScaler(with_mean=False))
                 ]
             )
 
@@ -100,16 +100,17 @@ class DataTransformation:
 
             logging.info('Saved preprocessing object')
 
+            # here we are saving our model which we created as pickle file using util.py file
             save_object(
                 file_path=self.data_transformation_config.preprocessor_obj_file_path,
                 obj=preprocessing_obj
             )
-            
+
             return(
                 train_arr,
                 test_arr,
                 self.data_transformation_config.preprocessor_obj_file_path
             )
 
-        except:
-            pass
+        except Exception as e:
+            raise CustomException(e,sys)

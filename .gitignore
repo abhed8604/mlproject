@@ -22,3 +22,10 @@ dist/
 
 # Local environment variables
 .env
+
+# CatBoost training output
+catboost_info/
+**/catboost_info/
+
+# Raw dataset (keep data out of version control)
+notebook/data/
