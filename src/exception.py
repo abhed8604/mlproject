@@ -1,10 +1,20 @@
 import sys
 from src.logger import logging
 
+# we are creating message for the custom exception to be printed in the terminal
 def error_message_detail(error,error_detail:sys):
-    _,_,exe_tb=error_detail.exc_info()
-    file_name=exe_tb.tb_frame.f_code.co_filename
-    error_message="Error occured in python script name [{0}] line number [{1}] error message [{2}]".format(file_name,exe_tb.tb_lineno,str(error))
+    _,_,exc_tb=error_detail.exc_info()
+    file_name = exc_tb.tb_frame.f_code.co_filename if exc_tb else "Unknown Script"
+    
+    line_number = exc_tb.tb_lineno if exc_tb else "Unknown Line"
+    
+    error_message = (
+        f"\n{'─' * 50}\n"
+        f"ERROR: {error}\n"
+        f"File:  {file_name}\n"
+        f"Line:  {line_number}\n"
+        f"{'─' * 50}"
+    )
 
     return error_message
 
