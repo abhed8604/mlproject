@@ -1,1 +1,66 @@
-<h1>hello bachooooo</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Exam Performance Indicator</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 650px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            margin-bottom: 24px;
+        }
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #2563eb;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            margin-top: 16px;
+        }
+        .btn:hover {
+            background-color: #1d4ed8;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Student Exam Performance Indicator</h1>
+        <p>A machine learning application that predicts student math scores based on academic and demographic factors.</p>
+    </header>
+
+    <main>
+        <h2>Overview</h2>
+        <p>This model estimates a student's math performance using several indicators:</p>
+        <ul>
+            <li>Gender and ethnicity</li>
+            <li>Parental level of education</li>
+            <li>Lunch type (standard or free/reduced)</li>
+            <li>Test preparation course completion</li>
+            <li>Reading and writing scores</li>
+        </ul>
+
+        <p>
+            <a href="{{ url_for('predict_datapoint') }}" class="btn">Go to Math Score Predictor &rarr;</a>
+        </p>
+    </main>
+</body>
+</html>
