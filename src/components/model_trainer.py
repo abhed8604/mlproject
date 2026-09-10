@@ -48,8 +48,48 @@ class ModelTrainer:
                 "CatBoosting Regressor": CatBoostRegressor(verbose=False),
                 "AdaBoost Regressor": AdaBoostRegressor(),
             }
+
+            # added all params for all models for hyperparameter tuning
+            params = {
+                "Decision Tree": {
+                    "max_depth": [3, 5, 7, 10, None],
+                    "min_samples_split": [2, 5, 10],
+                },
+                "Random Forest": {
+                    "n_estimators": [50, 100, 200],
+                    "max_depth": [None, 5, 10],
+                    "max_features": ["sqrt", None],
+                },
+                "Gradient Boosting": {
+                    "learning_rate": [0.01, 0.05, 0.1],
+                    "n_estimators": [100, 200],
+                    "max_depth": [3, 5],
+                    "subsample": [0.8, 1.0],
+                },
+                "Linear Regression": {},
+                "XGBRegressor": {
+                    "learning_rate": [0.01, 0.05, 0.1],
+                    "n_estimators": [100, 200],
+                    "max_depth": [3, 5, 7],
+                },
+                "CatBoosting Regressor": {
+                    "depth": [4, 6, 8],
+                    "learning_rate": [0.03, 0.1],
+                    "iterations": [100, 200],
+                },
+                "AdaBoost Regressor": {
+                    "learning_rate": [0.01, 0.1, 1.0],
+                    "n_estimators": [50, 100, 200],
+                },
+                "K-Neighbors Regressor": {
+                    "n_neighbors": [3, 5, 7, 9, 11],
+                    "weights": ["uniform", "distance"],
+                    "p": [1, 2],
+                }
+            }
+            
             # we create a report for all the models performance
-            model_report:dict=evaluate_model(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,models=models)
+            model_report:dict=evaluate_model(X_train,y_train,X_test,y_test,models,params)
 
             # now we will get the best model for our needs
             best_model_score=max(sorted(model_report.values()))
