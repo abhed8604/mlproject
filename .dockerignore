@@ -1,0 +1,8 @@
+venv/
+.git/
+notebook/
+catboost_info/
+logs/
+__pycache__/
+*.pyc
+*.egg-info/
