@@ -28,4 +28,5 @@ catboost_info/
 **/catboost_info/
 
 # Raw dataset (keep data out of version control)
-notebook/data/
+# notebook/data/ i wanted to not send ipynb aswell
+notebook/
